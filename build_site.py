@@ -44,9 +44,9 @@ CONFIG_JS = """
       Advanced:     'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform?usp=pp_url&entry.2140786242=Advanced+%E2%80%94+%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%97%E0%B8%99%E0%B9%80%E0%B8%A3%E0%B8%B2'
     },
     classroom: {
-      Beginner:     'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Beginner',
-      Intermediate: 'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Intermediate',
-      Advanced:     'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Advanced'
+      Beginner:     'https://classroom.google.com/c/874990290593?cjc=diqaqa33',
+      Intermediate: 'https://classroom.google.com/c/874989381411?cjc=7byxpu4y',
+      Advanced:     'https://classroom.google.com/c/874988953938?cjc=e34473tv'
     },
     contact: 'netiya.karaket@gmail.com'
   };
