@@ -34,10 +34,9 @@ CONFIG_JS = """
      ============================================================ */
   var CONFIG = {
     placementTest: 'https://docs.google.com/forms/d/e/1FAIpQLSfd6fjWi05rwWbdKDug0l9RMVgoIcRmRV17FUHVamp2_cPTPg/viewform',
-    // หน้าคลังไฟล์แบบกั้นสิทธิ์ ได้จากการ deploy ไฟล์ 4_LibraryWebApp.gs เป็น Web app
-    libraryUrl: 'https://script.google.com/ใส่ลิงก์หน้าคลังไฟล์',
-    // หน้าเรียนแบบกั้นสิทธิ์ ได้จากการ deploy โปรเจกต์ apps_script_register เป็น Web app
-    // ปุ่ม "เปิดหน้าเรียน" จะต่อ ?level=Beginner|Intermediate|Advanced ให้เองจากค่านี้
+    // หน้าเรียนและคลังไฟล์แบบกั้นสิทธิ์ ทั้งสองใช้ Web app เดียวกันจาก apps_script_register/
+    // (ปุ่ม "เปิดหน้าเรียน" จะต่อ ?level=Beginner|Intermediate|Advanced ให้เองจากค่า lessonApp)
+    libraryUrl: 'https://script.google.com/a/macros/mahidol.ac.th/s/AKfycby3dRGQvlMNwk3QqvZMjfDQPZfJfg4zcXNyY5ApeifmMIo3lkC24fuDBe06aYHu-PiT/exec?view=library',
     lessonApp: 'https://script.google.com/a/macros/mahidol.ac.th/s/AKfycby3dRGQvlMNwk3QqvZMjfDQPZfJfg4zcXNyY5ApeifmMIo3lkC24fuDBe06aYHu-PiT/exec',
     register: {
       Beginner:     'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform?usp=pp_url&entry.2140786242=Beginner+%E2%80%94+%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B9%84%E0%B8%94%E0%B9%89',

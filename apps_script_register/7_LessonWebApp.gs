@@ -15,7 +15,7 @@ var LEVELS_ = ['Beginner', 'Intermediate', 'Advanced'];
 // วางลิงก์ลงทะเบียนทั่วไป (จาก Logger ตอนรัน buildRegisterForm) แทนบรรทัดนี้
 var REGISTER_FORM_URL_ = 'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform';
 
-function doGet(e) {
+function renderLesson_(e) {
   var level = e.parameter.level;
   if (LEVELS_.indexOf(level) < 0) {
     return page_(
@@ -98,8 +98,11 @@ function styles_() {
     + '.wrap{max-width:560px;margin:0 auto;padding:40px 18px}'
     + '.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#7a869a}'
     + '.hello{font-size:24px;font-weight:700;color:#1F3864;margin-top:4px;margin-bottom:18px}'
-    + '.card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 3px rgba(16,24,40,.08)}'
+    + '.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:14px;box-shadow:0 1px 3px rgba(16,24,40,.08)}'
     + '.why{font-size:15px;margin:0 0 14px}'
     + '.btn{display:inline-block;padding:12px 26px;border-radius:8px;background:#2E74B5;color:#fff;text-decoration:none;font-weight:700}'
+    + '.label{font-size:12px;font-weight:700;color:#7a869a;letter-spacing:.04em;margin-bottom:6px}'
+    + '.filetitle{font-size:17px;font-weight:700;color:#1F3864;margin-bottom:8px}'
+    + '.note{font-size:13px;color:#7a869a;margin:16px 0 0}'
     + '</style>';
 }
