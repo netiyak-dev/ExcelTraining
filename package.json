@@ -1,0 +1,20 @@
+{
+  "name": "excel-training-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ชุดการเรียนรู้ Excel และ Google Sheets สามระดับ พร้อมคลังไฟล์ฝึกปฏิบัติ 7 สาขาวิชา",
+  "scripts": {
+    "build": "bash build_all.sh",
+    "build:web": "bash build_all.sh web",
+    "serve": "python3 -m http.server 8080 --directory ผลลัพธ์/หน้าเว็บ",
+    "check": "node --check build_deck_beginner.js && node --check build_deck_intermediate.js && node --check build_deck_advanced.js"
+  },
+  "dependencies": {
+    "docx": "^9.7.1",
+    "pptxgenjs": "^4.0.1"
+  },
+  "devDependencies": {
+    "@google/clasp": "^3.3.0",
+    "jsdom": "^30.0.1"
+  }
+}

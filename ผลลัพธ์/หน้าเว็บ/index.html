@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดการเรียนรู้ Excel &amp; Google Sheets — คลังไฟล์ฝึกปฏิบัติ 7 สาขา</title>
+<meta name="description" content="หลักสูตรอบรม Excel และ Google Sheets 3 ระดับ พร้อมชุดข้อมูลฝึกปฏิบัติที่ออกแบบเฉพาะสำหรับแต่ละสาขาวิชา">
+<style>
+:root{--navy:#1F3864;--blue:#2E74B5;--ink:#1a1a1a;--muted:#6b7684;--line:#e3e8ef;--bg:#F5F7FA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;
+  font-family:"Sarabun","Noto Sans Thai",-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+a{color:var(--blue)}
+h1,h2,h3{line-height:1.3;margin:0}
+.btn{display:inline-block;padding:11px 22px;border-radius:8px;text-decoration:none;
+  font-weight:700;font-size:15px;border:1.5px solid transparent;cursor:pointer}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy);border-color:#c9d6e8}
+.btn.big{padding:14px 30px;font-size:17px}
+
+/* hero */
+header.hero{background:linear-gradient(160deg,#1F3864 0%,#2E74B5 100%);color:#fff;padding:56px 0 48px}
+.hero h1{font-size:34px;font-weight:800}
+.hero .sub{font-size:18px;opacity:.92;margin:14px 0 0;max-width:640px}
+.hero .cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .cta .btn.primary{background:#fff;color:var(--navy)}
+.hero .cta .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.hero .note{margin-top:18px;font-size:14px;opacity:.85}
+
+section{padding:44px 0}
+.shead{margin-bottom:8px;font-size:24px;font-weight:800;color:var(--navy)}
+.slead{color:var(--muted);margin:0 0 24px;max-width:720px}
+
+/* levels */
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;align-items:start}
+.lvcard{background:#fff;border-radius:12px;padding:24px;border-top:5px solid;
+  box-shadow:0 1px 3px rgba(16,24,40,.07);display:flex;flex-direction:column}
+.lvname{font-size:22px;font-weight:800}
+.lvsub{font-size:15.5px;margin-top:2px;font-weight:600}
+.lvhours{font-size:13px;color:var(--muted);margin-top:6px}
+.concept{margin:16px 0 0;padding:14px 16px;border-radius:9px;font-size:15px;
+  font-weight:700;line-height:1.5;color:var(--ink)}
+.metaline{margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.6}
+.metaline b{color:var(--navy);font-size:13px;letter-spacing:.02em}
+.metaline.outp{padding:13px 16px;border-radius:9px;color:var(--ink);font-size:13.5px}
+.lvcard ul{margin:8px 0 0;padding-left:20px}
+.lvcard li{font-size:13.5px;margin:6px 0;line-height:1.55}
+.lessonbtn{display:block;margin-top:18px;padding:14px 18px;border-radius:10px;color:#fff;
+  text-decoration:none}
+.lessonbtn b{display:block;font-size:16px;font-weight:800}
+.lessonbtn span{display:block;font-size:12.5px;opacity:.9;margin-top:2px}
+.lessonbtn:hover{filter:brightness(1.08)}
+.lessonsoon{margin-top:18px;padding:13px 16px;border-radius:10px;background:#F2F5F9;
+  color:var(--muted);font-size:13px;line-height:1.6}
+details.rundown{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+details.rundown summary{font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer}
+.rdwrap{margin-top:12px}
+.rd{display:flex;gap:10px;align-items:center;margin:6px 0}
+.rdt{flex:none;min-width:66px;text-align:center;color:#fff;font-size:11.5px;font-weight:700;
+  padding:3px 8px;border-radius:5px}
+.rdx{font-size:13px;color:var(--ink70,#33445C)}
+.lvbtns{margin-top:20px;display:flex;gap:8px;flex-wrap:wrap}
+
+/* ladder */
+.ladder{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.ladder th,.ladder td{padding:14px 16px;text-align:left;font-size:13.5px;vertical-align:top;
+  border-bottom:1px solid var(--line)}
+.ladder thead th{font-size:14px;font-weight:800;color:#fff}
+.ladder tbody th{width:20%;font-weight:700;color:var(--navy);background:#F7FAFD}
+.ladder tbody tr:last-child th,.ladder tbody tr:last-child td{border-bottom:none}
+.ladwrap{overflow-x:auto}
+@media(max-width:700px){.ladder th,.ladder td{font-size:12.5px;padding:11px 12px}}
+
+/* setup bar */
+.setupbar{background:#FFF4E5;border-bottom:2px solid #E8A33D;padding:14px 0;font-size:14px}
+.setupbar .wrap{display:flex;gap:12px;align-items:flex-start}
+.setupbar b{color:#8A5A00;display:block;margin-bottom:3px;font-size:14.5px}
+.setupbar span{color:#6B5320;line-height:1.6}
+.setupbar code{background:#fff;border:1px solid #E8CFA0;border-radius:4px;padding:1px 6px;font-size:13px}
+.btn.notset{opacity:.55}
+.setupbar.flash{animation:flashbar 1.1s ease}
+@keyframes flashbar{0%,100%{background:#FFF4E5}35%{background:#FFE0B2}}
+
+/* teaser cards */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:26px}
+.tcard{background:#fff;border-radius:12px;padding:18px;border-top:4px solid;
+  box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.badge{color:#fff;font-weight:800;font-size:14px;padding:5px 11px;border-radius:7px;
+  display:inline-block;margin-bottom:10px}
+.tcard h3{font-size:16px;font-weight:700}
+.prog{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.lock{display:inline-block;margin-top:12px;font-size:11.5px;color:#8a6d1f;background:#FFF6E0;
+  padding:3px 9px;border-radius:5px;font-weight:700}
+
+/* gate */
+.gate{background:#fff;border-radius:12px;padding:28px;text-align:center;
+  box-shadow:0 1px 3px rgba(16,24,40,.07);border:2px dashed #c9d6e8}
+.gicon{font-size:19px;font-weight:800;color:var(--navy)}
+.gate p{font-size:15px;color:var(--muted);max-width:620px;margin:12px auto 0}
+.gbtns{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.gnote{font-size:13px;margin-top:18px}
+
+/* steps + faq */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.step{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.stepno{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:800;margin-bottom:12px}
+details.faq{background:#fff;border-radius:10px;padding:16px 20px;margin-bottom:10px;
+  box-shadow:0 1px 3px rgba(16,24,40,.06)}
+details.faq summary{font-weight:700;cursor:pointer;font-size:15.5px;color:var(--navy)}
+details.faq p{font-size:14.5px;margin:12px 0 0}
+.warnbox{background:#FDECEC;border-left:4px solid #C0392B;padding:16px 20px;border-radius:0 10px 10px 0;
+  font-size:14.5px}
+footer{background:var(--navy);color:#cfd9e8;padding:32px 0;font-size:13.5px;margin-top:20px}
+footer a{color:#a8c8ee}
+@media(max-width:600px){.hero h1{font-size:26px}.hero .sub{font-size:16px}.shead{font-size:20px}}
+</style>
+</head>
+<body>
+
+<div class="setupbar" id="setupBar">
+  <div class="wrap">
+    <div>
+      <b>หน้านี้ยังไม่ได้ตั้งค่าลิงก์ ปุ่มต่าง ๆ จึงยังกดไปไหนไม่ได้</b>
+      <span>เปิดไฟล์ <code>index.html</code> ด้วยโปรแกรมแก้ไขข้อความ มองหาส่วน <code>var CONFIG</code>
+      ที่อยู่ต้นสคริปต์ท้ายไฟล์ แล้วแทนที่ข้อความที่ขึ้นต้นว่า “ใส่ลิงก์” ด้วย URL จริงของท่าน
+      แถบนี้จะหายไปเองเมื่อตั้งค่าครบ</span>
+      <span id="setupWhich" style="display:block;margin-top:6px;font-weight:700;color:#8A5A00"></span>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>ทำงานกับข้อมูลจริงให้เป็น ไม่ใช่แค่ใช้โปรแกรมเป็น</h1>
+    <p class="sub">ชุดการเรียนรู้ Excel และ Google Sheets สามระดับ พร้อมชุดข้อมูลฝึกปฏิบัติที่ออกแบบแยกตามสาขาวิชา
+      ทุกชุดมีปัญหาข้อมูลซ่อนอยู่จริงแบบที่ท่านจะเจอในงานของตัวเอง</p>
+    <div class="cta">
+      <a class="btn primary big" href="#" id="ctaPlacement">เริ่มจากแบบทดสอบจัดระดับ</a>
+      <a class="btn ghost big" href="#files">ดูคลังไฟล์ฝึกปฏิบัติ</a>
+    </div>
+    <p class="note">ยังไม่แน่ใจว่าควรลงระดับไหน ใช้เวลา 6–14 นาทีทำแบบทดสอบ ระบบจะแนะนำระดับที่เหมาะกับท่านทันที</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="shead">สามระดับ ต่อยอดกันเป็นบันได</h2>
+    <p class="slead">แต่ละระดับใช้เวลา 3 ชั่วโมงรวมทำแบบฝึกหัด สอนคู่ขนานทั้ง Excel Desktop และ Google Sheets
+      เพราะสิ่งที่เรียนคือหลักคิดเรื่องข้อมูล ไม่ใช่ตำแหน่งปุ่มในโปรแกรม
+      ทั้งสามระดับใช้ชุดข้อมูลของสาขาเดียวกันตลอด ผู้เรียนจึงเห็นพัฒนาการของตัวเองจากข้อมูลที่คุ้นเคย</p>
+    <div class="levels"><article class="lvcard" style="border-top-color:#2E74B5"><div class="lvname" style="color:#2E74B5">Beginner</div><div class="lvsub">รากฐานของข้อมูลที่เชื่อถือได้</div><div class="lvhours">3 ชั่วโมง · รวมทำแบบฝึกหัด</div><div class="concept" style="background:#EDF3FA">ข้อมูลสะอาด คือจุดเริ่มต้นของงานที่เชื่อถือได้</div><div class="metaline"><b>เงื่อนไขก่อนเรียน</b><br>ไม่มีเงื่อนไข เริ่มได้เลยแม้ไม่เคยใช้สเปรดชีตอย่างเป็นระบบ</div><div class="metaline"><b>สิ่งที่จะทำได้</b></div><ul><li>อธิบายโครงสร้างตารางที่ถูกต้อง และชี้ได้ว่าตารางที่ให้มามีปัญหาตรงไหน</li><li>ป้อนและจัดรูปแบบข้อมูลตามชนิด และแก้เมื่อโปรแกรมตีความชนิดผิด</li><li>นำเข้าไฟล์ .csv ภาษาไทยโดยตัวอักษรไม่เพี้ยน</li><li>ทำความสะอาดด้วย Remove Duplicates, TRIM, Find &amp; Replace และ Conditional Formatting</li><li>ใช้ SUM, AVERAGE, COUNT, COUNTIF, SUMIF และการอ้างอิงแบบสัมบูรณ์</li><li>เรียง กรอง และเลือกชนิดกราฟให้ตรงกับคำถาม</li></ul><div class="metaline outp" style="background:#EDF3FA"><b>ชิ้นงานที่ได้กลับไป</b><br>ไฟล์ข้อมูลสะอาดหนึ่งไฟล์ พร้อมกราฟสรุปและชีตบันทึกการตัดสินใจ</div><details class="rundown"><summary>ดูผังการเรียน 3 ชั่วโมง</summary><div class="rdwrap"><div class="rd"><span class="rdt" style="background:#2E74B5">0–10</span><span class="rdx">แบบทดสอบก่อนเรียน</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">10–25</span><span class="rdx">กายวิภาคของสเปรดชีตและตารางที่ดี</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">25–55</span><span class="rdx">การป้อนข้อมูลและชนิดข้อมูล</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">55–75</span><span class="rdx">นำเข้าไฟล์ .txt และ .csv</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">75–85</span><span class="rdx">พักเบรก</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">85–115</span><span class="rdx">ทำความสะอาดข้อมูล</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">115–145</span><span class="rdx">ฟังก์ชันพื้นฐานและการอ้างอิงเซลล์</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">145–170</span><span class="rdx">เรียง กรอง สร้างกราฟ และแบบฝึกหัด</span></div><div class="rd"><span class="rdt" style="background:#2E74B5">170–180</span><span class="rdx">แบบทดสอบหลังเรียนและสรุป</span></div></div></details><a class="lessonbtn" style="background:#2E74B5" href="#" data-lesson="Beginner"><b>เปิดหน้าเรียน</b><span>ต้องลงทะเบียนและเข้าสู่ระบบด้วยบัญชี Google ก่อน</span></a><div class="lvbtns"><a class="btn primary" style="background:#2E74B5" href="#" data-reg="Beginner">สมัครระดับนี้</a><a class="btn ghost" href="#" data-class="Beginner">เข้าห้องเรียน</a></div></article><article class="lvcard" style="border-top-color:#0E5C52"><div class="lvname" style="color:#0E5C52">Intermediate</div><div class="lvsub">จากตารางดิบสู่ข้อสรุป</div><div class="lvhours">3 ชั่วโมง · รวมทำแบบฝึกหัด</div><div class="concept" style="background:#EAF5F2">ข้อมูลไม่ได้พูดเอง เราต้องตั้งคำถามให้ถูก</div><div class="metaline"><b>เงื่อนไขก่อนเรียน</b><br>ผ่านระดับ Beginner หรือทำแบบทดสอบจัดระดับแล้วได้ระดับนี้</div><div class="metaline"><b>สิ่งที่จะทำได้</b></div><ul><li>แปลงช่วงข้อมูลเป็นตารางแบบมีโครงสร้าง และใช้ชื่อช่วงให้สูตรขยายตัวเอง</li><li>ดึงข้อมูลข้ามตารางด้วย VLOOKUP, XLOOKUP หรือ INDEX+MATCH</li><li>จัดการค่าที่หาไม่พบด้วย IFERROR อย่างถูกวิธี</li><li>สร้าง PivotTable พร้อม Slicer และ Pivot Chart</li><li>ใช้ SUMIFS, COUNTIFS, AVERAGEIFS แก้โจทย์หลายเงื่อนไข</li><li>ตั้ง Data Validation และเขียนข้อสรุปที่มีหลักฐานรองรับ</li></ul><div class="metaline outp" style="background:#EAF5F2"><b>ชิ้นงานที่ได้กลับไป</b><br>รายงานสรุปด้วย PivotTable พร้อมข้อสรุปเชิงวิเคราะห์หนึ่งหน้า</div><details class="rundown"><summary>ดูผังการเรียน 3 ชั่วโมง</summary><div class="rdwrap"><div class="rd"><span class="rdt" style="background:#0E5C52">0–10</span><span class="rdx">แบบทดสอบก่อนเรียน</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">10–35</span><span class="rdx">โครงสร้างข้อมูลระดับมืออาชีพ</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">35–70</span><span class="rdx">ตระกูลฟังก์ชันค้นหา</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">70–80</span><span class="rdx">พักเบรก</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">80–120</span><span class="rdx">PivotTable</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">120–150</span><span class="rdx">ฟังก์ชันเงื่อนไขหลายชั้น</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">150–170</span><span class="rdx">ป้องกันความผิดพลาดและแบบฝึกหัดรวบยอด</span></div><div class="rd"><span class="rdt" style="background:#0E5C52">170–180</span><span class="rdx">แบบทดสอบหลังเรียนและสรุป</span></div></div></details><a class="lessonbtn" style="background:#0E5C52" href="#" data-lesson="Intermediate"><b>เปิดหน้าเรียน</b><span>ต้องลงทะเบียนและเข้าสู่ระบบด้วยบัญชี Google ก่อน</span></a><div class="lvbtns"><a class="btn primary" style="background:#0E5C52" href="#" data-reg="Intermediate">สมัครระดับนี้</a><a class="btn ghost" href="#" data-class="Intermediate">เข้าห้องเรียน</a></div></article><article class="lvcard" style="border-top-color:#3B1E6E"><div class="lvname" style="color:#3B1E6E">Advanced</div><div class="lvsub">ออกแบบระบบให้ข้อมูลทำงานแทนเรา</div><div class="lvhours">3 ชั่วโมง · รวมทำแบบฝึกหัด</div><div class="concept" style="background:#F4F1FA">AI เป็นผู้ช่วยที่เก่ง แต่ไม่รับผิดชอบ</div><div class="metaline"><b>เงื่อนไขก่อนเรียน</b><br>ผ่านระดับ Intermediate และควรมีชุดข้อมูลของตนเองมาด้วยอย่างน้อยหนึ่งชุด</div><div class="metaline"><b>สิ่งที่จะทำได้</b></div><ul><li>ระบุขอบเขตและข้อจำกัดของ AI ในงานสเปรดชีต</li><li>เขียนคำสั่งครบสี่ส่วนจนได้สูตรที่ใช้ได้ทันที</li><li>ตรวจสอบผลลัพธ์จาก AI ด้วยกรณีทดสอบที่รู้คำตอบล่วงหน้า</li><li>สร้างระบบอัตโนมัติด้วย Apps Script หรือ Power Query</li><li>ออกแบบ Dashboard ที่สื่อสารกับผู้รับสารเป้าหมายได้</li><li>ตัดสินใจได้ว่าข้อมูลใดนำเข้าเครื่องมือ AI ได้หรือไม่ได้</li></ul><div class="metaline outp" style="background:#F4F1FA"><b>ชิ้นงานที่ได้กลับไป</b><br>Dashboard หรือระบบอัตโนมัติหนึ่งชิ้น พร้อมบันทึกวิธีตรวจสอบความถูกต้อง</div><details class="rundown"><summary>ดูผังการเรียน 3 ชั่วโมง</summary><div class="rdwrap"><div class="rd"><span class="rdt" style="background:#3B1E6E">0–10</span><span class="rdx">แบบทดสอบก่อนเรียน</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">10–30</span><span class="rdx">กรอบคิดการทำงานร่วมกับ AI</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">30–60</span><span class="rdx">รูปแบบคำสั่งสำหรับงานสเปรดชีต</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">60–90</span><span class="rdx">การตรวจสอบผลลัพธ์อย่างเป็นระบบ</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">90–100</span><span class="rdx">พักเบรก</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">100–135</span><span class="rdx">ระบบอัตโนมัติ</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">135–160</span><span class="rdx">แบบฝึกหัดรวบยอด</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">160–175</span><span class="rdx">จริยธรรมและการสื่อสารข้อมูล</span></div><div class="rd"><span class="rdt" style="background:#3B1E6E">175–180</span><span class="rdx">แบบทดสอบหลังเรียนและสรุป</span></div></div></details><a class="lessonbtn" style="background:#3B1E6E" href="#" data-lesson="Advanced"><b>เปิดหน้าเรียน</b><span>ต้องลงทะเบียนและเข้าสู่ระบบด้วยบัญชี Google ก่อน</span></a><div class="lvbtns"><a class="btn primary" style="background:#3B1E6E" href="#" data-reg="Advanced">สมัครระดับนี้</a><a class="btn ghost" href="#" data-class="Advanced">เข้าห้องเรียน</a></div></article></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="shead">สามระดับต่างกันอย่างไร</h2>
+    <p class="slead">ไม่ได้ต่างกันแค่ความยากของสูตร แต่ต่างกันที่คำถามที่ผู้เรียนตอบได้เมื่อจบคาบ</p>
+    <div class="ladwrap">
+      <table class="ladder">
+        <thead><tr>
+          <th style="background:#1F3864">ประเด็น</th>
+          <th style="background:#2E74B5">Beginner</th>
+          <th style="background:#0E5C52">Intermediate</th>
+          <th style="background:#3B1E6E">Advanced</th>
+        </tr></thead>
+        <tbody><tr><th>คำถามแกนประจำระดับ</th><td>ข้อมูลของฉันอยู่ในรูปที่ใช้งานได้หรือยัง</td><td>ข้อมูลชุดนี้กำลังบอกอะไร</td><td>ฉันจะออกแบบระบบให้ข้อมูลทำงานแทนฉันได้อย่างไร</td></tr><tr><th>ทักษะแกน</th><td>ป้อน นำเข้า ทำความสะอาด และคำนวณพื้นฐาน</td><td>เชื่อมตาราง สรุปหลายมิติ และตีความผล</td><td>ทำงานร่วมกับ AI ตรวจสอบผลลัพธ์ และสร้างระบบอัตโนมัติ</td></tr><tr><th>ระดับการคิดตาม Bloom</th><td>จำ เข้าใจ และนำไปใช้</td><td>นำไปใช้และวิเคราะห์</td><td>วิเคราะห์ ประเมินค่า และสร้างสรรค์</td></tr><tr><th>บทบาทของผู้สอน</th><td>สาธิตทีละขั้น</td><td>ตั้งโจทย์แล้วให้ค้นวิธีเอง</td><td>เป็นที่ปรึกษาและผู้วิจารณ์งาน</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="files">
+  <div class="wrap">
+    <h2 class="shead">คลังไฟล์ฝึกปฏิบัติ 7 สาขาวิชา</h2>
+    <p class="slead">แต่ละสาขามีชุดข้อมูลของตัวเองที่จำลองจากงานจริง ใช้ได้ตลอดทั้งสามระดับ
+      โดยโจทย์จะยากขึ้นตามระดับ ผู้เรียนจึงเห็นพัฒนาการของตัวเองจากข้อมูลชุดเดิมที่คุ้นเคย</p>
+
+    <div class="tgrid"><article class="tcard" style="border-top-color:#2E7D32"><span class="badge" style="background:#2E7D32">AG</span><h3>แปลงทดลองข้าวโพด</h3><p class="prog">วิทยาศาสตร์การเกษตร</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#00695C"><span class="badge" style="background:#00695C">AC</span><h3>สมุดรายวันทั่วไป</h3><p class="prog">การบัญชี</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#EF6C00"><span class="badge" style="background:#EF6C00">BA</span><h3>ยอดขายร้านกาแฟ</h3><p class="prog">บริหารธุรกิจ</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#1565C0"><span class="badge" style="background:#1565C0">CB</span><h3>สำรวจกล้องดักถ่าย</h3><p class="prog">ชีววิทยาเชิงอนุรักษ์</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#5E35B1"><span class="badge" style="background:#5E35B1">ED</span><h3>สถานีตรวจวัดสิ่งแวดล้อม</h3><p class="prog">วิศวกรรมสิ่งแวดล้อมและการจัดการภัยพิบัติ</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#C2185B"><span class="badge" style="background:#C2185B">FT</span><h3>บันทึกควบคุมคุณภาพสายการผลิต</h3><p class="prog">เทคโนโลยีการอาหาร</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article><article class="tcard" style="border-top-color:#6D4C41"><span class="badge" style="background:#6D4C41">GS</span><h3>ข้อมูลเจาะสำรวจน้ำบาดาล</h3><p class="prog">ธรณีศาสตร์</p><span class="lock">เฉพาะผู้ลงทะเบียนแล้ว</span></article></div>
+
+    <div class="gate">
+      <div class="gicon">คลังไฟล์นี้เปิดให้เฉพาะผู้ลงทะเบียนแล้ว</div>
+      <p>ผู้ที่ลงทะเบียนอบรมแล้วเข้าคลังไฟล์ได้ทันทีด้วยบัญชี Google ของสถาบัน
+        ภายในจะมีรายละเอียดของแต่ละชุดข้อมูล โจทย์ทั้งสามระดับ และไฟล์ให้ดาวน์โหลดทั้งรูปแบบ Excel และ Google Sheets</p>
+      <div class="gbtns">
+        <a class="btn primary big" href="#" id="ctaLibrary">เข้าคลังไฟล์</a>
+        <a class="btn ghost big" href="#" id="ctaPlacement2">ยังไม่ได้ลงทะเบียน เริ่มที่แบบทดสอบจัดระดับ</a>
+      </div>
+      <p class="gnote">หากเข้าไม่ได้ทั้งที่ลงทะเบียนแล้ว ตรวจว่าเปิดด้วยบัญชีของสถาบันบัญชีเดียวกับที่ใช้ลงทะเบียนหรือไม่</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="shead">วิธีใช้ไฟล์เหล่านี้</h2>
+    <div class="steps">
+      <div class="step"><div class="stepno">1</div>
+        <b>เข้าคลังไฟล์ด้วยบัญชีของสถาบัน</b>
+        <p>ผู้ที่ลงทะเบียนแล้วเข้าคลังไฟล์ได้ทันที ระบบตรวจสิทธิ์จากบัญชีที่เปิดหน้าเว็บ แล้วจึงแสดงลิงก์ดาวน์โหลด</p></div>
+      <div class="step"><div class="stepno">2</div>
+        <b>เปิดชีต “อ่านก่อนเริ่ม” ก่อนเสมอ</b>
+        <p>ชีตแรกบอกบริบทของข้อมูล จำนวนปัญหาที่ซ่อนไว้ และโจทย์ทั้งสามระดับ อย่าเพิ่งกระโดดไปที่ข้อมูลดิบ</p></div>
+      <div class="step"><div class="stepno">3</div>
+        <b>หาปัญหาให้ครบก่อนลงมือแก้</b>
+        <p>สำรวจข้อมูลทั้งชุดแล้วจดว่าเจออะไรบ้าง การรีบแก้ทีละจุดโดยไม่เห็นภาพรวมมักทำให้แก้ผิดลำดับ</p></div>
+      <div class="step"><div class="stepno">4</div>
+        <b>บันทึกเหตุผลของทุกการตัดสินใจ</b>
+        <p>สร้างชีตชื่อ “บันทึกการตัดสินใจ” ระบุว่าจัดการแต่ละปัญหาอย่างไรและเพราะอะไร นี่คือสิ่งที่ทำให้งานวิเคราะห์ตรวจสอบย้อนกลับได้</p></div>
+      <div class="step"><div class="stepno">5</div>
+        <b>ส่งงานผ่าน Google Classroom</b>
+        <p>ส่งไฟล์ที่ทำเสร็จในห้องเรียนของระดับที่ท่านลงทะเบียน อาจารย์จะให้ข้อเสนอแนะกลับในไฟล์เดียวกัน</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="shead">คำถามที่พบบ่อย</h2>
+
+    <details class="faq"><summary>ข้อมูลในไฟล์เป็นข้อมูลจริงหรือไม่</summary>
+      <p>ไม่ใช่ ข้อมูลทุกชุดสร้างขึ้นด้วยโปรแกรมเพื่อการเรียนการสอนโดยเฉพาะ ไม่ใช่ข้อมูลจริงของบุคคล หน่วยงาน
+      หรือสถานประกอบการใด และห้ามนำตัวเลขไปอ้างอิงในงานวิชาการ สิ่งที่จำลองจากของจริงคือ
+      โครงสร้างคอลัมน์และลักษณะความผิดพลาดที่พบในงานของแต่ละสาขา ซึ่งเป็นส่วนที่มีคุณค่าต่อการฝึก</p></details>
+
+    <details class="faq"><summary>ทำไมไฟล์ถึงมีข้อมูลที่ผิดพลาดปนอยู่</summary>
+      <p>เพราะข้อมูลที่สะอาดเรียบร้อยแล้วไม่มีอยู่จริงในงานภาคสนาม การฝึกกับข้อมูลที่สมบูรณ์แบบทำให้ผู้เรียนเก่งเฉพาะ
+      ขั้นตอนสุดท้ายของงาน แต่ทำงานจริงไม่ได้ ทักษะที่หายากที่สุดคือการมองเห็นว่าข้อมูลมีปัญหาก่อนที่จะเริ่มวิเคราะห์
+      ซึ่งฝึกได้ก็ต่อเมื่อมีปัญหาให้เจอ</p></details>
+
+    <details class="faq"><summary>ต้องใช้สาขาของตัวเองเท่านั้นหรือไม่</summary>
+      <p>ไม่จำเป็น ท่านโหลดของสาขาอื่นมาลองได้ทั้งหมด และแนะนำให้ลองอย่างน้อยหนึ่งชุดที่ไม่ใช่สาขาตัวเอง
+      เพราะการอ่านโครงสร้างข้อมูลที่ไม่คุ้นเคยเป็นทักษะที่ต่างจากการทำงานกับข้อมูลที่รู้จักดีอยู่แล้ว
+      และเป็นสถานการณ์ที่เกิดขึ้นเสมอเมื่อทำงานข้ามหน่วยงาน</p></details>
+
+    <details class="faq"><summary>ใช้ Excel หรือ Google Sheets ดีกว่ากัน</summary>
+      <p>ทั้งสองโปรแกรมใช้ตรรกะเดียวกันแต่มีจุดแข็งต่างกัน Excel เร็วกว่ามากกับข้อมูลขนาดใหญ่และมีเครื่องมือวิเคราะห์
+      ครบกว่า ส่วน Google Sheets ทำงานร่วมกันแบบเรียลไทม์ได้และเชื่อมกับ Google Form ได้โดยตรง
+      หลักสูตรจึงสอนคู่ขนาน และแจกไฟล์ทั้งสองรูปแบบให้เลือกใช้</p></details>
+
+    <details class="faq"><summary>เปิดไฟล์ .xlsx แล้วภาษาไทยเพี้ยน ทำอย่างไร</summary>
+      <p>ไฟล์ .xlsx ไม่ควรมีปัญหานี้ หากพบอาการภาษาไทยอ่านไม่ออกมักเกิดกับไฟล์ .csv ซึ่งต้องนำเข้าผ่านเมนู
+      Data แล้วเลือก From Text/CSV และตั้งการเข้ารหัสเป็น UTF-8 ห้ามเปิดด้วยการดับเบิลคลิก
+      เรื่องนี้เป็นหนึ่งในหัวข้อที่สอนในระดับ Beginner</p></details>
+
+    <details class="faq"><summary>ยังไม่ได้ลงทะเบียน โหลดไฟล์ได้หรือไม่</summary>
+      <p>ไม่ได้ คลังไฟล์เปิดให้เฉพาะผู้ที่ลงทะเบียนอบรมแล้วเท่านั้น เหตุผลคือไฟล์เหล่านี้มาพร้อมโจทย์ที่ออกแบบ
+      ให้ทำควบคู่กับเนื้อหาในคาบ การได้ไฟล์ไปโดยไม่มีบริบทและไม่มีผู้สอนช่วยชี้แนะ มักทำให้ผู้เรียนแก้ปัญหาผิดวิธี
+      แล้วติดนิสัยที่แก้ยากกว่าเดิม อีกเหตุผลคือชุดข้อมูลเหล่านี้ใช้ซ้ำกับผู้เรียนหลายรุ่น
+      หากเผยแพร่ทั่วไปจะมีคนรู้คำตอบล่วงหน้าจนใช้วัดผลไม่ได้</p></details>
+
+    <details class="faq"><summary>ลงทะเบียนแล้วแต่เข้าคลังไฟล์ไม่ได้</summary>
+      <p>สาเหตุที่พบบ่อยที่สุดคือเปิดหน้าคลังไฟล์ด้วยบัญชี Google คนละบัญชีกับที่ใช้ลงทะเบียน
+      ระบบตรวจสิทธิ์จากบัญชีที่เปิดหน้าเว็บ กรุณาออกจากบัญชีอื่นแล้วเข้าใหม่ด้วยบัญชีของสถาบัน
+      หากเพิ่งลงทะเบียนเมื่อครู่ อาจต้องรอผู้ดูแลยืนยันรายชื่อก่อน</p></details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="warnbox">
+      <b>ข้อควรระวังสำคัญ</b><br>
+      อย่าลบข้อมูลที่ดูแปลกทิ้งทันที ในทุกชุดข้อมูลมีค่าบางค่าที่ดูเหมือนผิดแต่เป็นข้อมูลที่ถูกต้องตามธรรมเนียมของสาขานั้น
+      เช่น ผลตรวจจุลินทรีย์ที่เขียนว่า “น้อยกว่า 10” หรือจำนวนสินค้าที่ติดลบเพราะเป็นรายการคืนสินค้า
+      การแยกให้ออกว่าอะไรคือความผิดพลาดและอะไรคือธรรมเนียมของสาขา คือหัวใจของการทำงานกับข้อมูลจริง
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>ชุดการเรียนรู้ Excel &amp; Google Sheets</b><br>
+    พัฒนาโดย อาจารย์ ดร.เนติยา การะเกตุ · หลักสูตรวิทยาศาสตร์การเกษตร มหาวิทยาลัยมหิดล วิทยาเขตกาญจนบุรี<br>
+    ข้อมูลตัวอย่างทั้งหมดเป็นข้อมูลจำลองเพื่อการเรียนการสอน ไม่ใช่ข้อมูลจริงของหน่วยงานใด<br>
+    ติดต่อ <span id="contact"></span>
+  </div>
+</footer>
+
+<script>
+
+  /* ============================================================
+     แก้ลิงก์ทั้งหมดได้ที่นี่ที่เดียว  ไม่ต้องแก้ส่วนอื่นของไฟล์
+     หมายเหตุ: หน้านี้ไม่มีลิงก์ไฟล์ตัวอย่างแล้ว เพราะคลังไฟล์เปิดให้เฉพาะผู้ลงทะเบียน
+     ลิงก์ดาวน์โหลดจริงอยู่ในไฟล์ 4_LibraryWebApp.gs ซึ่งตรวจสิทธิ์ก่อนแสดงลิงก์
+     ============================================================ */
+  var CONFIG = {
+    placementTest: 'https://docs.google.com/forms/d/e/1FAIpQLSfd6fjWi05rwWbdKDug0l9RMVgoIcRmRV17FUHVamp2_cPTPg/viewform',
+    // หน้าคลังไฟล์แบบกั้นสิทธิ์ ได้จากการ deploy ไฟล์ 4_LibraryWebApp.gs เป็น Web app
+    libraryUrl: 'https://script.google.com/ใส่ลิงก์หน้าคลังไฟล์',
+    // หน้าเรียนแบบกั้นสิทธิ์ ได้จากการ deploy โปรเจกต์ apps_script_register เป็น Web app
+    // ปุ่ม "เปิดหน้าเรียน" จะต่อ ?level=Beginner|Intermediate|Advanced ให้เองจากค่านี้
+    lessonApp: 'https://script.google.com/a/macros/mahidol.ac.th/s/AKfycby3dRGQvlMNwk3QqvZMjfDQPZfJfg4zcXNyY5ApeifmMIo3lkC24fuDBe06aYHu-PiT/exec',
+    register: {
+      Beginner:     'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform?usp=pp_url&entry.2140786242=Beginner+%E2%80%94+%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%96%E0%B8%B7%E0%B8%AD%E0%B9%84%E0%B8%94%E0%B9%89',
+      Intermediate: 'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform?usp=pp_url&entry.2140786242=Intermediate+%E2%80%94+%E0%B8%88%E0%B8%B2%E0%B8%81%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%94%E0%B8%B4%E0%B8%9A%E0%B8%AA%E0%B8%B9%E0%B9%88%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B',
+      Advanced:     'https://docs.google.com/forms/d/e/1FAIpQLSc9N1kALMw3LzBC1Qoo-z92pCO6dfhQlhmhTvFnh3veQvMWAw/viewform?usp=pp_url&entry.2140786242=Advanced+%E2%80%94+%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%97%E0%B8%99%E0%B9%80%E0%B8%A3%E0%B8%B2'
+    },
+    classroom: {
+      Beginner:     'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Beginner',
+      Intermediate: 'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Intermediate',
+      Advanced:     'https://classroom.google.com/ใส่ลิงก์ห้องเรียน-Advanced'
+    },
+    contact: 'netiya.karaket@gmail.com'
+  };
+
+
+/* ---------- เติมลิงก์จาก CONFIG ---------- */
+(function () {
+  var pending = 0;
+
+  /** ลิงก์ที่ยังไม่ได้ตั้งค่าจะยังคลิกได้ แต่จะบอกเหตุผลแทนการเงียบ ๆ ไม่ไปไหน */
+  function isPlaceholder(url) {
+    return !url || url === '#' || url.indexOf('ใส่ลิงก์') >= 0 || url.indexOf('ใส่ File ID') >= 0;
+  }
+  function apply(a, url, label) {
+    if (!a) return;
+    if (isPlaceholder(url)) {
+      pending++;
+      a.href = '#';
+      a.classList.add('notset');
+      a.title = 'ยังไม่ได้ตั้งค่าลิงก์นี้ในส่วน CONFIG ของไฟล์ index.html';
+      // คลิกแล้วพาไปที่แถบแจ้งเตือนด้านบนพร้อมกะพริบให้เห็น ดีกว่าเงียบ ๆ ไม่ไปไหน
+      a.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        var bar = document.getElementById('setupBar');
+        var which = document.getElementById('setupWhich');
+        if (which) which.textContent = label ? ('ปุ่มที่ท่านเพิ่งกดคือ ' + label) : '';
+        if (bar) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          bar.classList.remove('flash');
+          void bar.offsetWidth;
+          bar.classList.add('flash');
+        }
+      });
+      return;
+    }
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+  }
+
+  apply(document.getElementById('ctaPlacement'), CONFIG.placementTest, 'แบบทดสอบจัดระดับ');
+  apply(document.getElementById('ctaPlacement2'), CONFIG.placementTest, 'แบบทดสอบจัดระดับ');
+  apply(document.getElementById('ctaLibrary'), CONFIG.libraryUrl, 'คลังไฟล์ฝึกปฏิบัติ');
+  document.getElementById('contact').textContent = CONFIG.contact;
+
+  [].forEach.call(document.querySelectorAll('[data-reg]'), function (a) {
+    var lv = a.getAttribute('data-reg');
+    apply(a, CONFIG.register[lv], 'ฟอร์มลงทะเบียนระดับ ' + lv);
+  });
+  [].forEach.call(document.querySelectorAll('[data-class]'), function (a) {
+    var lv = a.getAttribute('data-class');
+    apply(a, CONFIG.classroom[lv], 'ห้องเรียนระดับ ' + lv);
+  });
+  [].forEach.call(document.querySelectorAll('[data-lesson]'), function (a) {
+    var lv = a.getAttribute('data-lesson');
+    var url = isPlaceholder(CONFIG.lessonApp) ? CONFIG.lessonApp : (CONFIG.lessonApp + '?level=' + lv);
+    apply(a, url, 'เปิดหน้าเรียนระดับ ' + lv);
+  });
+
+  // แถบแจ้งเตือนแสดงไว้ตั้งแต่ต้น จะหายไปก็ต่อเมื่อตั้งค่าลิงก์ครบทุกอัน
+  if (pending === 0) {
+    var bar = document.getElementById('setupBar');
+    if (bar) bar.style.display = 'none';
+  }
+})();
+</script>
+</body>
+</html>

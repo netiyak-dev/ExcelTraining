@@ -1,0 +1,66 @@
+# สร้างหน้าเว็บจากซอร์สแล้วนำขึ้น GitHub Pages อัตโนมัติทุกครั้งที่ push เข้า main
+#
+# ก่อนใช้ครั้งแรก ให้ไปที่ Settings แล้วเลือก Pages แล้วตั้ง Source เป็น GitHub Actions
+#
+# หมายเหตุ ขั้น build ที่นี่ใช้เฉพาะ build_all.sh web ซึ่งต้องการแค่ Python มาตรฐาน
+# ไม่ต้องติดตั้งไลบรารีใด เพราะส่วนที่ต้องใช้ openpyxl กับ pptxgenjs คือไฟล์ Excel และสไลด์
+# ซึ่งไม่ได้นำขึ้นเว็บอยู่แล้ว
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: สร้างหน้าเว็บ
+        env:
+          NOINDEX: '1'   # ตั้งเป็น 0 ถ้าต้องการให้เครื่องมือค้นหาเก็บหน้าเรียนด้วย
+        run: bash build_all.sh web
+
+      - name: ตรวจว่าไฟล์ครบและไม่มีตัวแปรค้าง
+        run: |
+          cd "ผลลัพธ์/หน้าเว็บ"
+          test -f index.html
+          for f in *.html; do
+            if grep -q '%(' "$f"; then echo "พบตัวแปรที่ยังไม่ได้แทนค่าใน $f"; exit 1; fi
+          done
+          echo "ไฟล์ที่จะนำขึ้น"; ls -la
+
+      # หน้าเรียนสามระดับถูกย้ายไปเสิร์ฟผ่าน Apps Script Web App ที่กั้นสิทธิ์ด้วยการลงทะเบียนแล้ว
+      # (ดู apps_script_register/) ห้ามให้ไฟล์ static เหล่านี้ขึ้น GitHub Pages เด็ดขาด
+      # เพราะจะเปิดดูได้โดยไม่ต้องลงทะเบียนถ้ารู้ URL ตรง ๆ ซึ่งขัดกับจุดประสงค์ของการกั้นสิทธิ์
+      - name: ลบหน้าเรียน static ก่อนอัปโหลด ต้องเปิดผ่าน Apps Script เท่านั้น
+        run: rm -f "ผลลัพธ์/หน้าเว็บ/หน้าเรียน-Beginner.html" "ผลลัพธ์/หน้าเว็บ/หน้าเรียน-Intermediate.html" "ผลลัพธ์/หน้าเว็บ/หน้าเรียน-Advanced.html"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ผลลัพธ์/หน้าเว็บ
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
